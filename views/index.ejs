@@ -1,5 +1,29 @@
-<% include("./partials/header") %>
+<%- include("./partials/header") %>
 
-<h1>Hello World!</h1>
+<nav class="navbar bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/">ToDo App</a>
+  </div>
+</nav>
 
-<% include("./partials/footer") %>
+<div class="container mt-5">
+  <form action="/add/todo" class="d-flex">
+    <input
+      type="text"
+      name="todo"
+      class="form-control"
+      placeholder="Enter Todo"
+    />
+    <input type="submit" value="Add Todo" class="btn btn-md btn-primary mx-2" />
+  </form>
+
+  <ul class="list-group mt-5">
+    <li class="list-group-item">An item</li>
+    <li class="list-group-item">A second item</li>
+    <li class="list-group-item">A third item</li>
+    <li class="list-group-item">A fourth item</li>
+    <li class="list-group-item">And a fifth one</li>
+  </ul>
+</div>
+
+<%- include("./partials/footer") %>
