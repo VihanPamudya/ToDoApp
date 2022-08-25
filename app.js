@@ -1,7 +1,7 @@
-import { Express } from "express";
-import mongoose from "mongoose";
+const express = require("express")
+const mongoose = require("mongoose")
 
-const app = Express();
+const app = express();
 
 // Conection to mongodb
 mongoose.connect("mongodb://localhost/toDoApp", {
@@ -10,11 +10,12 @@ mongoose.connect("mongodb://localhost/toDoApp", {
 });
 
 // Middlewares
-app.use(Express.urlencoded({ extended: true }));
-app.use(Express.static("public"));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static("public"));
 app.set("view engine", "ejs");
 
 //Routes
+app.use(require("./routes/index"))
 
 // Server Configuration
 app.listen(3000, () => console.log("Server runing on port: 3000"));
