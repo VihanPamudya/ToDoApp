@@ -1,13 +1,19 @@
 const express = require("express")
 const mongoose = require("mongoose")
+const MONGOURI = require("./config/dev")
+const config = require("./config")
 
 const app = express();
 
 // Conection to mongodb
-mongoose.connect("mongodb://localhost/toDoApp", {
+mongoose.connect(config.DB_CONNECTION_STRING, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
+
+mongoose.connection.on('connected', () => {
+    console.log("mongoose connected");
+})
 
 // Middlewares
 app.use(express.urlencoded({ extended: true }));
