@@ -16,8 +16,17 @@ router.post("/add/todo", (req, res) => {
       console.log(err);
     })
 
-    .get("delete/todo/:_id",(req,res)=>{
+    .get("/delete/todo/:_id",(req,res)=>{
 const {_id} = req.params;
+Todo.deleteOne(_id)
+.then(() => {
+    console.log("Deleted Todo Successfully!");
+    res.redirect("/");
+  })
+  .catch((err) => {
+    console.log(err);
+  })
+
     })
 });
 
