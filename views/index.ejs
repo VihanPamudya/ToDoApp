@@ -18,12 +18,9 @@
   </form>
 
   <ul class="list-group mt-5">
-    <% todo.forEach %>
-    <li class="list-group-item">An item</li>
-    <li class="list-group-item">A second item</li>
-    <li class="list-group-item">A third item</li>
-    <li class="list-group-item">A fourth item</li>
-    <li class="list-group-item">And a fifth one</li>
+    <% todo.forEach(todos =>{ %>
+    <li class="list-group-item"><%= todos.todo %></li>
+    <% }) %>
   </ul>
 </div>
 
