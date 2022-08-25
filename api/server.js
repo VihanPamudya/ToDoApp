@@ -56,6 +56,14 @@ app.put("/todo/complete/:id",async(req,res)=>{
     res.json(todo)
 })
 
+app.put("/todo/update/:id",async(req,res)=>{
+  const id = req.params.id
+  const todo = await Todo.findByIdAndUpdate(id)
+  todo.text = req.body.text
+  todo.save()
+  res.json(todo)
+})
+
 app.listen(3000, ()=>{
     console.log("Server started on port : 3000")
 })

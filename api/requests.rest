@@ -15,3 +15,11 @@ DELETE http://localhost:3000/todo/delete/6307f20864ee2d8210fda585
 
 ###
 PUT http://localhost:3000/todo/complete/6307efefe00b43e70eea97ee
+
+###
+PUT http://localhost:3000/todo/update/63085c1029b2fad4fcc197d2
+Content-Type: application/json
+
+{
+    "text":"test"
+}
