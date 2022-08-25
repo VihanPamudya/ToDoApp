@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const Todo = require("./models/Todo");
+require('dotenv').config()
 
 const app = express();
 
@@ -10,7 +11,7 @@ app.use(cors());
 
 mongoose
   .connect(
-    "mongodb+srv://vihan:Abcd*123@todoapp.frfu6xv.mongodb.net/FirstDB?retryWrites=true&w=majority",
+    process.env.DB_URL,
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
