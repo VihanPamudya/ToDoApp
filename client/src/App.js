@@ -2,7 +2,7 @@ import {useState,useEffect} from "react";
 
 function App() {
 
-const [todos,setTodos] = useState([])
+const [todos, setTodos] = useState([])
 const [popupActive, setPopupActive] = useState(false)
 const [newTodo, setNewTodo]= useState("")
 
