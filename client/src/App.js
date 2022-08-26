@@ -9,7 +9,6 @@ function App() {
 
   useEffect(() => {
     GetTodos();
-    console.log(todos)
   }, []);
 
   const GetTodos = () => {
@@ -26,7 +25,7 @@ function App() {
 
       <div className="todos">
         {todos.map((todo) => (
-          <div className="todo">
+          <div className={"todo " + (todo.complete ? "is-complete" : "")} key={todo._id} onClick={()=> todo._id}>
             <div className="checkbox"></div>
             <div className="text">{todo.text}</div>
             <div className="delete-todo">x</div>
