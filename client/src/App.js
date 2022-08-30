@@ -24,21 +24,13 @@ function App() {
       .catch((err) => console.log(err));
   };
 
-  const completeTodo = (_id) => {
+  const completeTodo = async (_id) => {
     axios
-      .post("http://localhost:3000/complete-todo", {_id})
+      .post("http://localhost:3000/complete-todo", { _id })
       .then((res) => console.log(res.data))
       .catch((err) => console.log(err));
-    // setTodos((todos) => {
-    //   todos.map((todo) => {
-    //     if (todo._id === data._id) {
-    //       todo.complete = data.complete;
-    //     }
 
-    //     return todo;
-    //   });
-    // });
-    // window.location.reload();
+    window.location.reload();
   };
 
   const addUpdateTodo = () => {
@@ -82,9 +74,11 @@ function App() {
           <div
             className={"todo " + (todo.complete ? "is-complete" : "")}
             key={todo._id}
-            onClick={() => completeTodo(todo._id)}
           >
-            <div className="checkbox"></div>
+            <div
+              className="checkbox"
+              onClick={() => completeTodo(todo._id)}
+            ></div>
             <div className="text">{todo.text}</div>
             <div
               className="edit-todo"
@@ -124,7 +118,7 @@ function App() {
               onChange={(e) => setText(e.target.value)}
               value={text}
             />
-            <div className="button" onClick={addUpdateTodo}>
+            <div className="button" onClick={() => {addUpdateTodo(); setPopupActive(false)}}>
               {isUpdating ? "Update Task" : "Create Task"}
             </div>
           </div>
