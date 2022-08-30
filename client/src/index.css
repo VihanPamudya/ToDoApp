@@ -91,6 +91,7 @@ h4 {
     align-items: center;
     justify-content: center;
     font-weight: 700;
+    cursor: pointer;
 }
 
 .delete-todo .delete{
@@ -111,6 +112,7 @@ h4 {
     align-items: center;
     justify-content: center;
     font-weight: 700;
+    cursor: pointer;
 }
 
 .edit-todo .edit{
