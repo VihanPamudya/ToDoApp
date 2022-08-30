@@ -7,8 +7,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const API_BASE = "http://localhost:3000";
-
 function App() {
   const [todos, setTodos] = useState([]);
   const [popupActive, setPopupActive] = useState(false);
@@ -20,55 +18,37 @@ function App() {
   }, []);
 
   const GetTodos = () => {
-    fetch(API_BASE + "/todos")
-      .then((res) => res.json())
-      .then((data) => setTodos(data))
-      .catch((err) => console.log(err));
+    axios.get("http://localhost:3000/todos")
+    .then((res)=>setTodos(res.data))
+    .catch((err)=>console.log(err))
   };
 
-  const completeTodo = async (id) => {
-    const data = await fetch(API_BASE + "/todo/complete/" + id).then((res) =>
-      res.json()
-    );
-    setTodos((todos) => {
-      todos.map((todo) => {
-        if (todo._id === data._id) {
-          todo.complete = data.complete;
-        }
+  const completeTodo = (_id) => {
+   axios.post("http://localhost:3000/complete-todo")
+   .then((res) => console.log(res.data))
+   .catch((err) => console.log(err));
+    // setTodos((todos) => {
+    //   todos.map((todo) => {
+    //     if (todo._id === data._id) {
+    //       todo.complete = data.complete;
+    //     }
 
-        return todo;
-      });
-    });
-    window.location.reload();
+    //     return todo;
+    //   });
+    // });
+    // window.location.reload();
   };
-
-  // const addTodo = async () => {
-  //   const data = await fetch(API_BASE + "/todo/new", {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({
-  //       text: newTodo,
-  //     }),
-  //   }).then((res) => res.json());
-
-  //   setTodos([...todos, data]);
-
-  //   setPopupActive(false);
-  //   setNewTodo("");
-  // };
 
   const addUpdateTodo = () => {
 
     if (isUpdating === "") {
-      axios.post("http://localhost:3000/todo/new", { text })
+      axios.post("http://localhost:3000/save-todo", { text })
         .then((res) => {
           setText("");
         })
         .catch((err) => console.log(err));
     }else{
-      axios.post("http://localhost:3000/todo/update", { _id: isUpdating, text })
+      axios.post("http://localhost:3000/update-todo", { _id: isUpdating, text })
         .then((res) => {
           setText("");
           setUpdating("");
@@ -83,14 +63,10 @@ function App() {
   }
 
 
-  const deleteTodo = async (id) => {
-    const data = await fetch(API_BASE + "/todo/delete/" + id, {
-      method: "DELETE",
-    }).then((res) => res.json());
-    setTodos((todos) => {
-      todos.filter((todo) => todo._id !== data._id);
-    });
-    window.location.reload();
+  const deleteTodo = (_id) => {
+    axios.post("http://localhost:3000/delete-todo",{_id})
+    .then((res) => console.log(res.data))
+    .catch((err) => console.log(err));
   };
 
   return (
