@@ -50,6 +50,7 @@ function App() {
         })
         .catch((err) => console.log(err));
     }
+    window.location.reload();
   };
 
   const updateTodo = (_id, text) => {
@@ -62,6 +63,7 @@ function App() {
       .post("http://localhost:3000/delete-todo", { _id })
       .then((res) => console.log(res.data))
       .catch((err) => console.log(err));
+      window.location.reload();
   };
 
   return (
@@ -106,12 +108,13 @@ function App() {
             onClick={() => {
               setPopupActive(false);
               setText("");
+              setUpdating("");
             }}
           >
             <FontAwesomeIcon className="close" icon={faCircleXmark} />
           </div>
           <div className="content">
-            <h3>Add Task</h3>
+            <h3>{isUpdating ? "Edit Task" : "Add Task"}</h3>
             <input
               type="text"
               className="add-todo-input"
