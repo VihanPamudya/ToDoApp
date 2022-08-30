@@ -83,14 +83,38 @@ h4 {
     transform: translateY(-50%);
     right: 16px;
     color: var(--light);
-    width: 24px;
-    height: 24px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     background-color: #af1e2d;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 700;
+}
+
+.delete-todo .delete{
+    height: 1.3rem;
+}
+
+.todo .edit-todo {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 65px;
+    color: var(--light);
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #af1e2d;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+}
+
+.edit-todo .edit{
+    height: 1.3rem;
 }
 
 .addPopup {
@@ -130,11 +154,13 @@ h4 {
     position: absolute;
     top: 16px;
     right: 16px;
-    width: 20px;
-    height: 20px;
     font-size: 20px;
     color: var(--dark);
     cursor: pointer;
+}
+
+.closePopup .close {
+    height: 1.8rem;
 }
 
 .popup h3 {
@@ -157,7 +183,7 @@ h4 {
 }
 
 .button {
-    padding: 16px 32px;
+    padding: 14px 24px;
     border-radius: 999px;
     background-image: linear-gradient(to right, var(--primary), var(--secondary));
     display: inline-block;
