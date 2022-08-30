@@ -8,6 +8,7 @@ const app = express();
 
 app.use(express.json());
 app.use(cors());
+app.use(routes)
 
 mongoose
   .connect(
@@ -25,11 +26,6 @@ mongoose
   });
 
 require("./models/Todo")
-
-app.get("/todos",async(req,res)=>{
-    const todos = await Todo.find();
-    res.json(todos); 
-})
 
 app.post("/todo/new",async(req,res)=>{
     const todo = new Todo({
@@ -63,6 +59,8 @@ app.put("/todo/update/:id",async(req,res)=>{
   todo.save()
   res.json(todo)
 })
+
+const routes = require("./routes/ToDoRoute")
 
 app.listen(3000, ()=>{
     console.log("Server started on port : 3000")
