@@ -1,7 +1,6 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-// const Todo = require("./models/Todo");
 require('dotenv').config()
 
 const app = express();
@@ -24,17 +23,6 @@ mongoose
   .catch((err) => {
     console.log(err);
   });
-
-require("./models/Todo")
-
-
-// app.get("/todo/complete/:id",async(req,res)=>{
-//     const todo = await Todo.findById(req.params.id)
-//     todo.complete = !todo.complete
-
-//     todo.save()
-//     res.json(todo)
-// })
 
 const routes = require("./routes/ToDoRoute")
 app.use(routes)

@@ -18,15 +18,17 @@ function App() {
   }, []);
 
   const GetTodos = () => {
-    axios.get("http://localhost:3000/todos")
-    .then((res)=>setTodos(res.data))
-    .catch((err)=>console.log(err))
+    axios
+      .get("http://localhost:3000/todos")
+      .then((res) => setTodos(res.data))
+      .catch((err) => console.log(err));
   };
 
   const completeTodo = (_id) => {
-   axios.post("http://localhost:3000/complete-todo")
-   .then((res) => console.log(res.data))
-   .catch((err) => console.log(err));
+    axios
+      .post("http://localhost:3000/complete-todo", {_id})
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err));
     // setTodos((todos) => {
     //   todos.map((todo) => {
     //     if (todo._id === data._id) {
@@ -40,33 +42,34 @@ function App() {
   };
 
   const addUpdateTodo = () => {
-
     if (isUpdating === "") {
-      axios.post("http://localhost:3000/save-todo", { text })
+      axios
+        .post("http://localhost:3000/save-todo", { text })
         .then((res) => {
           setText("");
         })
         .catch((err) => console.log(err));
-    }else{
-      axios.post("http://localhost:3000/update-todo", { _id: isUpdating, text })
+    } else {
+      axios
+        .post("http://localhost:3000/update-todo", { _id: isUpdating, text })
         .then((res) => {
           setText("");
           setUpdating("");
         })
         .catch((err) => console.log(err));
     }
-  }
+  };
 
   const updateTodo = (_id, text) => {
     setUpdating(_id);
     setText(text);
-  }
-
+  };
 
   const deleteTodo = (_id) => {
-    axios.post("http://localhost:3000/delete-todo",{_id})
-    .then((res) => console.log(res.data))
-    .catch((err) => console.log(err));
+    axios
+      .post("http://localhost:3000/delete-todo", { _id })
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -83,11 +86,14 @@ function App() {
           >
             <div className="checkbox"></div>
             <div className="text">{todo.text}</div>
-            <div className="edit-todo" onClick={() =>{updateTodo(todo._id, todo.text); setPopupActive(true)} }>
-              <FontAwesomeIcon
-                className="edit"
-                icon={faPenToSquare}
-              />
+            <div
+              className="edit-todo"
+              onClick={() => {
+                updateTodo(todo._id, todo.text);
+                setPopupActive(true);
+              }}
+            >
+              <FontAwesomeIcon className="edit" icon={faPenToSquare} />
             </div>
             <div className="delete-todo" onClick={() => deleteTodo(todo._id)}>
               <FontAwesomeIcon className="delete" icon={faTrashCan} />
@@ -119,7 +125,7 @@ function App() {
               value={text}
             />
             <div className="button" onClick={addUpdateTodo}>
-              Create Task
+              {isUpdating ? "Update Task" : "Create Task"}
             </div>
           </div>
         </div>

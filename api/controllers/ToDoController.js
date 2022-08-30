@@ -35,8 +35,9 @@ module.exports.updateToDo = async (req, res) => {
 module.exports.completeToDo = async (req, res) => {
     const {_id} = req.body
 
-    ToDoModel
-    .findByIdAndUpdate(_id)
-    .then(() => res.set(201).send("Completed Successfully"))
-    .catch((err) => console.log(err));
+    const todo = await ToDoModel.findById(_id)
+    todo.complete = !todo.complete;
+    todo.save();
+    todo.then(() => res.set(201).send("Completed Successfully"));
+    todo.catch((err) => console.log(err));
 }
